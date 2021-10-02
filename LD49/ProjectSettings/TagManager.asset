@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Parcel
+  - PostOffice
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -38,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Collisions
+    uniqueID: 2537476553
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Buildings
+    uniqueID: 3384978199
+    locked: 0
+  - name: Parcel
+    uniqueID: 3746853007
     locked: 0
