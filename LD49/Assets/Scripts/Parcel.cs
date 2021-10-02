@@ -42,6 +42,7 @@ public class Parcel : MonoBehaviour {
         yield return new WaitForSeconds(timer);
         ParcelSpawner.parcelDictionary.Remove(transform.position);
         Destroy(transform.gameObject);
+        StaminaManager.LoseStamina(0.05f);
     }
 
 

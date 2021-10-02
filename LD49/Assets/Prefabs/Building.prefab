@@ -97,7 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fbfbc6353509e489238723f7e53201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyBar: {fileID: 1736975559691531983, guid: 07ebbbf933967114fb376d13b969506b, type: 3}
   spawnTime: 6
+  energyBarSpawnTime: 3
+  chance: 30
 --- !u!1001 &1468832404228691861
 PrefabInstance:
   m_ObjectHideFlags: 0

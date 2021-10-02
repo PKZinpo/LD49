@@ -26,8 +26,15 @@ public class ParcelSpawner : MonoBehaviour {
         while (spawnIsRunning) {
             // Choose random building
             int randomBuilding = Random.Range(0, GameObject.FindGameObjectsWithTag("Building").Length);
+            bool ready = true;
+            // Check if current building has parcel
+            foreach (GameObject parcel in GameObject.FindGameObjectsWithTag("Parcel")) {
+                if (parcel.transform.parent.gameObject == GameObject.FindGameObjectsWithTag("Building")[randomBuilding]) {
+                    ready = false;
+                }
+            }
             // If building does not have parcel and is ready to spawn, spawn parcel; otherwise, loop again
-            if (GameObject.FindGameObjectsWithTag("Building")[randomBuilding].transform.childCount < 3 && GameObject.FindGameObjectsWithTag("Building")[randomBuilding].GetComponent<Building>().GetCanSpawn()) {
+            if (ready && GameObject.FindGameObjectsWithTag("Building")[randomBuilding].GetComponent<Building>().GetCanSpawn()) {
                 GameObject parcel = Instantiate(parcelPrefab, GameObject.FindGameObjectsWithTag("Building")[randomBuilding].transform, false);
                 parcel.transform.position = GameObject.FindGameObjectsWithTag("Building")[randomBuilding].transform.GetChild(0).transform.position;
                 // Add building object and coroutine ID to dictionary for later access
@@ -40,7 +47,7 @@ public class ParcelSpawner : MonoBehaviour {
         
     }
     private IEnumerator SpawnParcelPostOffice() {
-        // Spawn parcel at PO
+        // Spawns parcel at PO
         yield return new WaitForSeconds(spawnTimePO);
         GameObject parcel = Instantiate(parcelPrefab, GameObject.FindGameObjectWithTag("PostOffice").transform, false);
         parcel.transform.position = GameObject.FindGameObjectWithTag("PostOffice").transform.GetChild(0).transform.position;

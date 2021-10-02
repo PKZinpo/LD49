@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public GameObject collidingWith;
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private int canHold;
 
@@ -9,7 +11,6 @@ public class PlayerMovement : MonoBehaviour {
     private float yMovement = 0f;
     private SpriteRenderer spriteRenderer;
     private Vector3 direction;
-    private Vector3 velocity = Vector3.zero;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
         xMovement = Input.GetAxisRaw("Horizontal");
         yMovement = Input.GetAxisRaw("Vertical");
 
+        // Sets child parcel transform positions to same position as player
         if (transform.childCount > 0) {
             foreach (GameObject parcel in GameObject.FindGameObjectsWithTag("Parcel")) {
                 if (parcel.transform.parent.gameObject == gameObject) {
@@ -44,8 +46,10 @@ public class PlayerMovement : MonoBehaviour {
         if (collision.name.Contains("Parcel")) {// When parcel picked up by player
             if (transform.childCount < canHold) {
                 collision.GetComponent<BoxCollider2D>().enabled = false;
-                StopCoroutine(ParcelSpawner.parcelDictionary[collision.transform.position]);
+                // Adds parcel entry to UI list
+                ParcelManager.UpdateParcelList(collision.GetComponent<Parcel>().destination);
                 // Remove parcel entry from dictionary in ParcelSpawner
+                StopCoroutine(ParcelSpawner.parcelDictionary[collision.transform.position]);
                 ParcelSpawner.parcelDictionary.Remove(collision.transform.position);
                 // Destroy timer bar
                 Destroy(collision.transform.GetChild(0).gameObject);
@@ -53,18 +57,20 @@ public class PlayerMovement : MonoBehaviour {
                 collision.transform.parent = transform;
             }
         }
-        else {
-            if (transform.childCount > 0) {
-                // Check each child
-                for (int i = 0; i < transform.childCount; i++) {
-                    // Destroy parcel if destination matches
-                    if (transform.GetChild(i).GetComponent<Parcel>().destination.name == collision.transform.parent.name) {
-                        Destroy(transform.GetChild(i).gameObject);
-                        // Add score for each dropoff
-                        GameManager.AddScore();
-                    }
-                }
-            }
+        else if (collision.name.Contains("EnergyBar")) {
+            //StartCoroutine(collision.GetComponentInParent<Building>().SpawnEnergyBar());
+            collision.GetComponentInParent<Building>().canSpawnBar = true;
+            Destroy(collision.gameObject);
+            StaminaManager.AddStamina();
         }
+        else {
+            // Writes game object that collision happens with
+            collidingWith = collision.transform.parent.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        // Resets variable for object collision
+        collidingWith = null;
     }
 }
