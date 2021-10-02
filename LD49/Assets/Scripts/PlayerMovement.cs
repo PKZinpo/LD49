@@ -3,11 +3,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float movementSpeed;
+    [SerializeField] private int canHold;
 
     private float xMovement = 0f;
     private float yMovement = 0f;
     private SpriteRenderer spriteRenderer;
     private Vector3 direction;
+    private Vector3 velocity = Vector3.zero;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,50 +42,29 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.name.Contains("Parcel")) {// When parcel picked up by player
-            collision.GetComponent<BoxCollider2D>().enabled = false;
-            // Check for parcel entry in ParcelSpawner dictionary
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++) {
+            if (transform.childCount < canHold) {
+                collision.GetComponent<BoxCollider2D>().enabled = false;
+                StopCoroutine(ParcelSpawner.parcelDictionary[collision.transform.position]);
                 // Remove parcel entry from dictionary in ParcelSpawner
-                if (GameObject.FindGameObjectsWithTag("Building")[i] == collision.transform.parent.gameObject) {
-                    StopCoroutine(ParcelSpawner.parcelDictionary[i]);
-                    ParcelSpawner.parcelDictionary.Remove(i);
-                    // Destroy timer bar
-                    Destroy(collision.transform.GetChild(0).gameObject);
-                    // Add entry to parcelDestination dictionary
-                    GameManager.parcelDestinations.Add(collision.GetInstanceID(), collision.GetComponent<Parcel>().destination);
-                }
+                ParcelSpawner.parcelDictionary.Remove(collision.transform.position);
+                // Destroy timer bar
+                Destroy(collision.transform.GetChild(0).gameObject);
+
+                collision.transform.parent = transform;
             }
-            collision.transform.parent = transform;
         }
         else {
-            string collisionName = collision.transform.parent.tag;
-            switch (collisionName) {
-                case "PostOffice": // When touching drop off at post office
-                    if (transform.childCount > 0) {
-                        for (int i = 0; i < transform.childCount; i++) {
-                            if (transform.GetChild(i).GetComponent<Parcel>().destination.name.Contains(collisionName)) {
-                                Destroy(transform.GetChild(i).gameObject);
-                                // Add score for each dropoff
-                                GameManager.AddScore();
-                            }
-                        }
+            if (transform.childCount > 0) {
+                // Check each child
+                for (int i = 0; i < transform.childCount; i++) {
+                    // Destroy parcel if destination matches
+                    if (transform.GetChild(i).GetComponent<Parcel>().destination.name == collision.transform.parent.name) {
+                        Destroy(transform.GetChild(i).gameObject);
+                        // Add score for each dropoff
+                        GameManager.AddScore();
                     }
-                    break;
-                
-                case "Building": // When touching drop off at respective building
-                    if (transform.childCount > 0) {
-                        for (int i = 0; i < transform.childCount; i++) {
-                            if (transform.GetChild(i).GetComponent<Parcel>().destination.name.Contains(collisionName)) {
-                                Destroy(transform.GetChild(i).gameObject);
-                                // Add score for each dropoff
-                                GameManager.AddScore();
-                            }
-                        }
-                    }
-                    break;
+                }
             }
-        
-
         }
     }
 }

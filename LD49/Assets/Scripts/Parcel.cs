@@ -40,12 +40,8 @@ public class Parcel : MonoBehaviour {
     public IEnumerator ParcelTimer() {
         // Destroys parcel if not picked up
         yield return new WaitForSeconds(timer);
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++) {
-            if (GameObject.FindGameObjectsWithTag("Building")[i] == transform.parent.gameObject) {
-                ParcelSpawner.parcelDictionary.Remove(i);
-            }
-        }
-        Destroy(gameObject);
+        ParcelSpawner.parcelDictionary.Remove(transform.position);
+        Destroy(transform.gameObject);
     }
 
 

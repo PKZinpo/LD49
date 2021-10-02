@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafb6dbe5e24de34b9d98f43b93cf1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTimePO: 6
   spawnTime: 4
   parcelPrefab: {fileID: 837576120111314563, guid: cbded3c9e543ecf44b57fb5c29903e39, type: 3}

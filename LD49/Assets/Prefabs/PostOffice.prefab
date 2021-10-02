@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5938159957609451291}
   - component: {fileID: 5938159957609451290}
+  - component: {fileID: 4283989910606767203}
   m_Layer: 0
   m_Name: PostOffice
   m_TagString: PostOffice
@@ -28,8 +29,8 @@ Transform:
   m_LocalPosition: {x: -1.988, y: -0.266, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5938159957874178291}
   - {fileID: 8704817011636515850}
+  - {fileID: 5938159957874178291}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: daa1e798b99039b4ba8c6a797111f051, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85fcdf65ce8d58c408363845a2f03134, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4283989910606767203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938159957609451493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93dd56c6ec4d2a34d904d9bd723d8b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7559416015531282567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93,7 +106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4215621956754335860, guid: 2056683b8e232c04a9cd96471681bfbc, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4215621956754335860, guid: 2056683b8e232c04a9cd96471681bfbc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,7 +168,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1059110428788527355, guid: 752417a9ccb4dc041b3d8b079e37a288, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1059110428788527355, guid: 752417a9ccb4dc041b3d8b079e37a288, type: 3}
       propertyPath: m_LocalPosition.x
