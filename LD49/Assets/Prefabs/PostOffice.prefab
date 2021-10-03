@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5938159957609451291}
   - component: {fileID: 5938159957609451290}
   - component: {fileID: 4283989910606767203}
+  - component: {fileID: 8873025558382796088}
   m_Layer: 0
   m_Name: PostOffice
   m_TagString: PostOffice
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5938159957609451493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.988, y: -0.266, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 8704817011636515850}
   - {fileID: 5938159957874178291}
@@ -97,6 +98,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd56c6ec4d2a34d904d9bd723d8b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8873025558382796088
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938159957609451493}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7e4d81e99ae0ba42ab9dc0bd123336d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7559416015531282567
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,11 +6,13 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float movementSpeed;
     [SerializeField] private int canHold;
+    [SerializeField] private Animator playerAnim;
 
     private float xMovement = 0f;
     private float yMovement = 0f;
     private SpriteRenderer spriteRenderer;
     private Vector3 direction;
+    private bool isMoving = false;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -30,6 +32,8 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
+        // Animate player object
+        playerAnim.SetBool("IsMoving", isMoving);
     }
 
     private void FixedUpdate() {
@@ -39,6 +43,10 @@ public class PlayerMovement : MonoBehaviour {
             direction.Normalize();
             transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movementSpeed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+            isMoving = true;
+        }
+        else {
+            isMoving = false;
         }
     }
 

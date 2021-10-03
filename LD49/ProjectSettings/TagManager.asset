@@ -44,6 +44,9 @@ TagManager:
   - name: Collisions
     uniqueID: 2537476553
     locked: 0
+  - name: Background
+    uniqueID: 2225425943
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
