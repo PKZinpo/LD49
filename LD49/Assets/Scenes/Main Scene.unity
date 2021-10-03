@@ -3892,7 +3892,7 @@ MonoBehaviour:
   staminaBar: {fileID: 1951756246}
   player: {fileID: 2068948553}
   multiplier: 0.75
-  maxStamina: 10
+  maxStamina: 30
 --- !u!4 &616178395
 Transform:
   m_ObjectHideFlags: 0
