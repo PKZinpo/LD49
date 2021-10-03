@@ -41,6 +41,7 @@ public class Parcel : MonoBehaviour {
         // Destroys parcel if not picked up
         yield return new WaitForSeconds(timer);
         ParcelSpawner.parcelDictionary.Remove(transform.position);
+        Debug.Log("ParcelDestroy");
         Destroy(transform.gameObject);
         StaminaManager.LoseStamina(0.05f);
     }
