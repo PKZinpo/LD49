@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 4510779090359975807}
   - component: {fileID: 4510779090359975804}
   - component: {fileID: 3185546085530822986}
-  - component: {fileID: 4741344082475314452}
   m_Layer: 5
   m_Name: ParcelIcon
   m_TagString: Untagged
@@ -204,17 +203,3 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4741344082475314452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4510779090359975802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2382d903d5b7f384db2c617135fe3861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: 0
-  temp: {fileID: 0}
