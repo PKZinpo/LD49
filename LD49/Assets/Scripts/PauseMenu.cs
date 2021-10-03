@@ -6,11 +6,16 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenuUI;
     public GameObject gameOver;
     public GameObject score;
+    public AudioManager audioManager;
 
     public static bool isPaused = false;
 
-    void Update() {
+    private void Awake() {
+        isPaused = false;
+    }
+    private void Update() {
         if (StaminaManager.isOver) {
+            audioManager.StopSound("GameTheme");
             GameOver();
             StaminaManager.isOver = false;
         }

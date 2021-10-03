@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class ParcelManager : MonoBehaviour {
 
     public static List<GameObject> parcelList = new List<GameObject>();
+    public static int parcelCount;
+
+    public AudioManager audioManager;
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject parcelIconPrefab;
@@ -16,6 +19,8 @@ public class ParcelManager : MonoBehaviour {
         // Assigning variables
         parcelIcon = parcelIconPrefab;
         transformList = transform;
+        parcelCount = 0;
+        parcelList.Clear();
     }
     private void Update() {
         if (!PauseMenu.isPaused) {
@@ -26,11 +31,13 @@ public class ParcelManager : MonoBehaviour {
                     if (player.GetComponent<PlayerMovement>().collidingWith == parcelList[0]) {
                         // Adds to score if it is correct destination
                         GameManager.AddScore();
+                        audioManager.Play("CorrectDropOff");
                     }
                     else {
                         // Otherwise penalizes
                         GameManager.RemoveScore();
                         StaminaManager.LoseStamina(0.1f);
+                        audioManager.Play("IncorrectDropOff");
                     }
                     // Destroy player child entry and first parcel list entry
                     parcelList.RemoveAt(0);

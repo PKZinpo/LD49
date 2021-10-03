@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 4940137751598041297}
+  audioManager: {fileID: 4261696807708934369, guid: c512d5540042658419a3652a046970fd, type: 3}
 --- !u!1 &4940137751396405893
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour {
     private float yMovement = 0f;
     private Rigidbody2D rigidBody;
     private Vector3 direction;
-    private Vector2 direction2D;
     private bool isMoving = false;
+
+    public AudioManager audioManager;
 
     private void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -67,6 +68,9 @@ public class PlayerMovement : MonoBehaviour {
                 Color color = collision.GetComponent<SpriteRenderer>().color;
                 color.a = 0;
                 collision.GetComponent<SpriteRenderer>().color = color;
+
+                audioManager.Play("ParcelPickUp");
+
             }
         }
         else if (collision.name.Contains("EnergyBar")) {
@@ -74,6 +78,8 @@ public class PlayerMovement : MonoBehaviour {
             collision.GetComponentInParent<Building>().canSpawnBar = true;
             Destroy(collision.gameObject);
             StaminaManager.AddStamina();
+
+            audioManager.Play("EnergyBar");
         }
         else {
             // Writes game object that collision happens with

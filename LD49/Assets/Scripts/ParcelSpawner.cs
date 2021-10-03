@@ -41,10 +41,10 @@ public class ParcelSpawner : MonoBehaviour {
                 StartCoroutine(GameObject.FindGameObjectsWithTag("Building")[randomBuilding].GetComponent<Building>().CanSpawnParcel());
                 Coroutine parcelCoroutine = StartCoroutine(parcel.GetComponent<Parcel>().ParcelTimer());
                 parcelDictionary.Add(parcel.transform.position, parcelCoroutine);
-                spawnIsRunning = false;
+                break;
             }
         }
-        
+        spawnIsRunning = false;
     }
     private IEnumerator SpawnParcelPostOffice() {
         // Spawns parcel at PO

@@ -15,6 +15,7 @@ public class StaminaManager : MonoBehaviour {
     private void Start() {
         staminaLeft = maxStamina;
         stamina = maxStamina;
+        isOver = false;
     }
 
     private void Update() {
@@ -22,11 +23,11 @@ public class StaminaManager : MonoBehaviour {
             if (staminaLeft > 0) {
                 staminaLeft -= Time.deltaTime * multiplier * player.transform.childCount;
             }
-            else {
-                isOver = true;
-            }
         }
         staminaBar.fillAmount = staminaLeft / maxStamina;
+        if (staminaLeft <= 0) {
+            isOver = true;
+        }
     }
 
     public static void AddStamina() {

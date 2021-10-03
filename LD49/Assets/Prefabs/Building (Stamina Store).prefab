@@ -132,7 +132,7 @@ MonoBehaviour:
   energyBar: {fileID: 1736975559691531983, guid: 07ebbbf933967114fb376d13b969506b, type: 3}
   spawnTime: 6
   energyBarSpawnTime: 3
-  chance: 30
+  chance: 40
 --- !u!1001 &4450053764008844676
 PrefabInstance:
   m_ObjectHideFlags: 0

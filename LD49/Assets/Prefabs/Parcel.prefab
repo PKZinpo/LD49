@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
-  timer: 3
+  timer: 5
 --- !u!210 &4574466144638801086
 SortingGroup:
   m_ObjectHideFlags: 0

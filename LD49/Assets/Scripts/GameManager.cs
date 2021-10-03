@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public static int score = 0;
     public static Dictionary<int, GameObject> parcelDestinations = new Dictionary<int, GameObject>();
 
+    private void Awake() {
+        score = 0;
+    }
     private void Update() {
         scoreText.GetComponent<Text>().text = score.ToString();
     }

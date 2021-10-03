@@ -18,8 +18,23 @@ public class Parcel : MonoBehaviour {
         ytimerBarLength = transform.GetChild(0).transform.GetChild(0).transform.localScale.y;
         ztimerBarLength = transform.GetChild(0).transform.GetChild(0).transform.localScale.z;
         // Set destination
+        ParcelManager.parcelCount++;
         if (transform.parent.name.Contains("Building")) {
-            destination = GameObject.FindGameObjectWithTag("PostOffice");
+            // For every 5th parcel, destination is random
+            if (ParcelManager.parcelCount % 5 == 0) {
+                bool spawnIsRunning = true;
+                while (spawnIsRunning) {
+                    // Choose random building
+                    int randomBuilding = Random.Range(0, GameObject.FindGameObjectsWithTag("Building").Length);
+                    destination = GameObject.FindGameObjectsWithTag("Building")[randomBuilding];
+                    if (!destination.name.Contains("PostOffice")) {
+                        spawnIsRunning = false;
+                    }
+                }
+            }
+            else {
+                destination = GameObject.FindGameObjectWithTag("PostOffice");
+            }
         }
         else if (transform.parent.name.Contains("PostOffice")) {
             bool spawnIsRunning = true;

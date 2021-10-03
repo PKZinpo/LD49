@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour {
 
     public Animator transition;
+    public AudioManager audioManager;
 
     private float transitionTime = 1f;
     private void Awake() {
+        Time.timeScale = 1f;
         if (SceneManager.GetActiveScene().buildIndex == 0) {
-            Time.timeScale = 1f;
+            audioManager.Play("OpenTheme");
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 1) {
+            audioManager.Play("GameTheme");
         }
     }
 
@@ -25,6 +30,7 @@ public class LevelLoader : MonoBehaviour {
     }
     public void RestartLevel() {
         // Resumes time scale and goes to main menu
+        StopAllCoroutines();
         Time.timeScale = 1f;
         PauseMenu.isPaused = false;
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
