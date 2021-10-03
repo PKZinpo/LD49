@@ -47,6 +47,15 @@ TagManager:
   - name: Background
     uniqueID: 2225425943
     locked: 0
+  - name: Fences
+    uniqueID: 924826993
+    locked: 0
+  - name: Player
+    uniqueID: 3921144085
+    locked: 0
+  - name: Interface
+    uniqueID: 3950531061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

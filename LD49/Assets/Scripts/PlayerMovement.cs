@@ -10,12 +10,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private float xMovement = 0f;
     private float yMovement = 0f;
-    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigidBody;
     private Vector3 direction;
+    private Vector2 direction2D;
     private bool isMoving = false;
 
     private void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
         if (xMovement != 0 || yMovement != 0) {
             direction = new Vector3(xMovement, yMovement, transform.position.z);
             direction.Normalize();
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movementSpeed * Time.deltaTime);
+            rigidBody.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
             isMoving = true;
         }
