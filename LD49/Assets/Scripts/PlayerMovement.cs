@@ -62,8 +62,11 @@ public class PlayerMovement : MonoBehaviour {
                 ParcelSpawner.parcelDictionary.Remove(collision.transform.position);
                 // Destroy timer bar
                 Destroy(collision.transform.GetChild(0).gameObject);
-
+                // Set parent to player and make parcel invisibile
                 collision.transform.parent = transform;
+                Color color = collision.GetComponent<SpriteRenderer>().color;
+                color.a = 0;
+                collision.GetComponent<SpriteRenderer>().color = color;
             }
         }
         else if (collision.name.Contains("EnergyBar")) {
