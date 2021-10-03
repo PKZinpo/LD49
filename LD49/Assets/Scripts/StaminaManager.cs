@@ -7,8 +7,10 @@ public class StaminaManager : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private float multiplier;
     [SerializeField] private float maxStamina;
-    private static float staminaLeft;
     private static float stamina;
+    
+    public static float staminaLeft;
+    public static bool isOver = false;
 
     private void Start() {
         staminaLeft = maxStamina;
@@ -21,7 +23,7 @@ public class StaminaManager : MonoBehaviour {
                 staminaLeft -= Time.deltaTime * multiplier * player.transform.childCount;
             }
             else {
-                Application.Quit();
+                isOver = true;
             }
         }
         staminaBar.fillAmount = staminaLeft / maxStamina;

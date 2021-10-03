@@ -1,14 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenuUI;
+    public GameObject gameOver;
+    public GameObject score;
 
     public static bool isPaused = false;
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (StaminaManager.isOver) {
+            GameOver();
+            StaminaManager.isOver = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape)) { // Pauses when escape is pressed
             if (isPaused) {
                 Resume();
             }
@@ -16,26 +22,26 @@ public class PauseMenu : MonoBehaviour {
                 Pause();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Quit();
-        }
     }
 
     public void Resume() {
+        // Resumes game
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
     public void Pause() {
+        // Pauses Game
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
-
-    public void Quit() {
-        Time.timeScale = 1f;
-        //SceneLoader.LoadLevel("Title Screen");
-        isPaused = false;
+    public void GameOver() {
+        // Ends Game
+        score.GetComponent<Text>().text = "SCORE: " + GameManager.score.ToString();
+        gameOver.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
     }
 }

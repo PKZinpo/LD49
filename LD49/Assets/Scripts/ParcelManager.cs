@@ -18,27 +18,25 @@ public class ParcelManager : MonoBehaviour {
         transformList = transform;
     }
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (player.GetComponent<PlayerMovement>().collidingWith != null) {
-                if (player.GetComponent<PlayerMovement>().collidingWith == parcelList[0]) {
-                    // Adds to score if it is correct destination
-                    GameManager.AddScore();
+        if (!PauseMenu.isPaused) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (player.GetComponent<PlayerMovement>().collidingWith != null) {
+                    Debug.Log(player.GetComponent<PlayerMovement>().collidingWith);
+                    Debug.Log(parcelList[0]);
+                    if (player.GetComponent<PlayerMovement>().collidingWith == parcelList[0]) {
+                        // Adds to score if it is correct destination
+                        GameManager.AddScore();
+                    }
+                    else {
+                        // Otherwise penalizes
+                        GameManager.RemoveScore();
+                        StaminaManager.LoseStamina(0.1f);
+                    }
+                    // Destroy player child entry and first parcel list entry
+                    parcelList.RemoveAt(0);
+                    Destroy(player.transform.GetChild(0).gameObject);
+                    Destroy(transform.GetChild(0).gameObject);
                 }
-                else {
-                    // Otherwise penalizes
-                    GameManager.RemoveScore();
-                    StaminaManager.LoseStamina(0.1f);
-                }
-                foreach (var asdfhjkl in parcelList) {
-                    Debug.Log(asdfhjkl);
-                }
-                parcelList.RemoveAt(0);
-                foreach (var asdfhjkl in parcelList) {
-                    Debug.Log(asdfhjkl);
-                }
-                // Destroy player child entry
-                Destroy(player.transform.GetChild(0).gameObject);
-                Destroy(transform.GetChild(0).gameObject);
             }
         }
     }

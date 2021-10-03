@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     [SerializeField] private GameObject scoreText;
-    [SerializeField] private static int score = 0;
+
+    public static int score = 0;
     public static Dictionary<int, GameObject> parcelDestinations = new Dictionary<int, GameObject>();
 
     private void Update() {

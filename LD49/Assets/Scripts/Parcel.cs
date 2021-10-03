@@ -22,8 +22,15 @@ public class Parcel : MonoBehaviour {
             destination = GameObject.FindGameObjectWithTag("PostOffice");
         }
         else if (transform.parent.name.Contains("PostOffice")) {
-            int randomBuilding = Random.Range(0, GameObject.FindGameObjectsWithTag("Building").Length);
-            destination = GameObject.FindGameObjectsWithTag("Building")[randomBuilding];
+            bool spawnIsRunning = true;
+            while (spawnIsRunning) {
+                // Choose random building
+                int randomBuilding = Random.Range(0, GameObject.FindGameObjectsWithTag("Building").Length);
+                destination = GameObject.FindGameObjectsWithTag("Building")[randomBuilding];
+                if (!destination.name.Contains("PostOffice")) {
+                    spawnIsRunning = false;
+                }
+            }
         }
     }
 
@@ -41,7 +48,6 @@ public class Parcel : MonoBehaviour {
         // Destroys parcel if not picked up
         yield return new WaitForSeconds(timer);
         ParcelSpawner.parcelDictionary.Remove(transform.position);
-        Debug.Log("ParcelDestroy");
         Destroy(transform.gameObject);
         StaminaManager.LoseStamina(0.05f);
     }
