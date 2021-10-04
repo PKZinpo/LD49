@@ -13,6 +13,7 @@ public class ParcelSpawner : MonoBehaviour {
 
     private void Start() {
         StartCoroutine(SpawnParcelPostOffice());
+        parcelDictionary.Clear();
     }
     private void Update() {
         if (!spawnIsRunning) {

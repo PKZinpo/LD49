@@ -3245,6 +3245,10 @@ PrefabInstance:
       propertyPath: sounds.Array.data[6].name
       value: EnergyBar
       objectReference: {fileID: 0}
+    - target: {fileID: 4261696807708934369, guid: c512d5540042658419a3652a046970fd, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4261696807708934375, guid: c512d5540042658419a3652a046970fd, type: 3}
       propertyPath: m_Name
       value: Audio Manager

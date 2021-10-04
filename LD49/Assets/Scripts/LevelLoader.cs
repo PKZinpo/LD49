@@ -10,6 +10,9 @@ public class LevelLoader : MonoBehaviour {
     private float transitionTime = 1f;
     private void Awake() {
         Time.timeScale = 1f;
+    }
+
+    private void Start() {
         if (SceneManager.GetActiveScene().buildIndex == 0) {
             audioManager.Play("OpenTheme");
         }
